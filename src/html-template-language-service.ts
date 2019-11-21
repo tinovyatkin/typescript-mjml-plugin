@@ -304,9 +304,9 @@ export default class HtmlTemplateLanguageService
     end: number,
     settings: ts.EditorSettings
   ): ts.TextChange[] {
-    if (!this.configuration.format.enabled) {
-      return [];
-    }
+    // if (!this.configuration.format.enabled) {
+    //   return [];
+    // }
 
     // Disable formatting for blocks that contain a style tag
     //
