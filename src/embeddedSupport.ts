@@ -66,11 +66,12 @@ export const MJML_CSS_ATTRIBUTES = new Set([
 ]);
 
 interface EmbeddedRegion {
-  languageId: string | undefined;
+  languageId?: string;
   start: number;
   end: number;
   onlyPlaceholders: boolean;
   attributeValue?: boolean;
+  attributeName?: string | null;
 }
 
 /**
@@ -223,7 +224,7 @@ export function getDocumentRegions(
   const text = document
     .getText()
     .replace(/<mj-style/gi, "<style   ")
-    .replace(/mj-style>/gi, "   style>");
+    .replace(/<\/mj-style/gi, "</style   ");
   const scanner = languageService.createScanner(text);
   let lastTagName = "";
   let lastAttributeName: string | null = null;
@@ -297,7 +298,8 @@ export function getDocumentRegions(
               start,
               end,
               onlyPlaceholders,
-              attributeValue: true
+              attributeValue: true,
+              attributeName: lastAttributeName
             });
           }
         }
