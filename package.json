@@ -25,7 +25,8 @@
     "vscode-languageserver-types": "^3.14.0"
   },
   "files": [
-    "lib"
+    "lib",
+    "!*.map"
   ],
   "devDependencies": {
     "@types/node": "^12.12.11",
