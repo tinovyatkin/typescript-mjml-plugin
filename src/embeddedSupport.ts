@@ -25,6 +25,7 @@ export interface HTMLDocumentRegions {
   getLanguageRanges(range: Range): LanguageRange[];
   getLanguagesInDocument(): string[];
   getLanguageAtPosition(position: Position): string | undefined;
+  getImportedScripts(): string[];
 }
 
 export const CSS_STYLE_RULE = "__";
@@ -337,8 +338,8 @@ export function getDocumentRegions(
         break;
       case TokenType.AttributeValue:
         if (
-          lastAttributeName === "src" &&
-          lastTagName.toLowerCase() === "script"
+          lastAttributeName === "path" &&
+          lastTagName.toLowerCase() === "mj-include"
         ) {
           let value = scanner.getTokenText();
           if (value.startsWith("'") || value.startsWith('"')) {
@@ -396,6 +397,7 @@ export function getDocumentRegions(
       getLanguageAtPosition(document, regions, position),
     getLanguageRanges: (range: Range) =>
       getLanguageRanges(document, regions, range),
-    getLanguagesInDocument: () => getLanguagesInDocument(document, regions)
+    getLanguagesInDocument: () => getLanguagesInDocument(document, regions),
+    getImportedScripts: () => importedScripts
   };
 }
