@@ -210,7 +210,7 @@ export default class HtmlTemplateLanguageService
 
   constructor(
     private readonly typescript: typeof ts,
-    private readonly configuration: Configuration,
+    // private readonly configuration: Configuration,
     private readonly virtualDocumentProvider: VirtualDocumentProvider,
     private readonly htmlLanguageService: HtmlLanguageService,
     private readonly styledLanguageService: StyledTemplateLanguageService
