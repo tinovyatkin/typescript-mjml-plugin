@@ -1,6 +1,6 @@
 {
   "name": "typescript-mjml-plugin",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "TypeScript language service plugin that adds IntelliSense for MJML tagged templates",
   "keywords": [
     "TypeScript",
