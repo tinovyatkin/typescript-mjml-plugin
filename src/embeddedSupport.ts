@@ -41,7 +41,6 @@ export const MJML_CSS_ATTRIBUTES = new Set([
   "tb-hover-border-color",
   "tb-selected-border-color",
   "tb-width",
-  "thumbnails",
   "background-color",
   "icon-width",
   "icon-height",
@@ -64,6 +63,13 @@ export const MJML_CSS_ATTRIBUTES = new Set([
   "vertical-align",
   "width"
 ]);
+const mjmlAttributeToCssProperty(attr: string): string {
+  const attribute = attr.trim().toLowerCase().replace(/^tb-/, '');
+  for(const shorthand of ['color', 'padding', 'width', 'height', 'position']) {
+    if(attribute.includes(shorthand)) return shorthand;
+  }
+  return attribute;
+}
 
 interface EmbeddedRegion {
   languageId?: string;
@@ -86,7 +92,7 @@ const onlyPlaceholdersRegex = /^ *x{3,}( *x{3,})* *$/;
 function getAttributeLanguage(attributeName?: string | null): string | null {
   if (!attributeName) return null;
 
-  // if (MJML_CSS_ATTRIBUTES.has(attributeName.toLowerCase())) return "css";
+  if (MJML_CSS_ATTRIBUTES.has(attributeName.toLowerCase())) return "css";
   const match = /^(style)$|^(on\w+)$/i.exec(attributeName);
   if (!match) {
     return null;
@@ -116,6 +122,11 @@ function getPrefix(c: EmbeddedRegion) {
   if (c.attributeValue && !c.onlyPlaceholders) {
     switch (c.languageId) {
       case "css":
+        if (
+          c.attributeName &&
+          MJML_CSS_ATTRIBUTES.has(c.attributeName.toLowerCase())
+        )
+          return `${CSS_STYLE_RULE} { ${mjmlAttributeToCssProperty}: `;
         return CSS_STYLE_RULE + "{";
     }
   }
