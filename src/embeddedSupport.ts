@@ -232,8 +232,6 @@ export function getDocumentRegions(
         lastTagName = scanner.getTokenText();
         lastAttributeName = null;
         languageIdFromType = "javascript";
-        break;
-      case TokenType.Content:
         if (lastTagName.toLowerCase() !== "mj-style") break;
       case TokenType.Styles:
         regions.push({
