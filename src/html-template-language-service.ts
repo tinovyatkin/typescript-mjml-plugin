@@ -14,7 +14,7 @@ import {
   LanguageService as HtmlLanguageService
 } from "vscode-html-languageservice";
 import * as vscode from "vscode-languageserver-types";
-import { Configuration } from "./configuration";
+// import { Configuration } from "./configuration";
 import { getDocumentRegions } from "./embeddedSupport";
 import { VirtualDocumentProvider } from "./virtual-document-provider";
 
