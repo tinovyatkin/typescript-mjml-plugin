@@ -19,10 +19,10 @@
     "url": "https://github.com/tinovyatkin/typescript-mjml-plugin/issues"
   },
   "dependencies": {
-    "typescript-styled-plugin": "0.14.0",
+    "typescript-styled-plugin": "^0.13.0",
     "typescript-template-language-service-decorator": "^2.2.0",
-    "vscode-html-languageservice": "^3.0.3",
-    "vscode-languageserver-types": "^3.14.0"
+    "vscode-html-languageservice": "^2.1.10",
+    "vscode-languageserver-types": "^3.13.0"
   },
   "files": [
     "lib"
