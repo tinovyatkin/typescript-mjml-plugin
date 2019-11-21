@@ -61,7 +61,7 @@ class HtmlPlugin {
 
     const htmlTemplateLanguageService = new HtmlTemplateLanguageService(
       this._typescript,
-      this._config,
+      // this._config,
       this._virtualDocumentProvider,
       this.htmlLanguageService,
       styledLanguageService
