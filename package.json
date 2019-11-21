@@ -4,8 +4,8 @@
   "description": "TypeScript language service plugin that adds IntelliSense for MJML tagged templates",
   "keywords": [
     "TypeScript",
-    "html",
-    "literal html",
+    "mjml",
+    "literal mjml",
     "templates"
   ],
   "main": "lib/index.js",
