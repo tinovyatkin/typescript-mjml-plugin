@@ -129,9 +129,9 @@ function getPrefix(c: EmbeddedRegion) {
           c.attributeName &&
           MJML_CSS_ATTRIBUTES.has(c.attributeName.toLowerCase())
         )
-          return `${CSS_STYLE_RULE} { ${mjmlAttributeToCssProperty(
+          return `${CSS_STYLE_RULE} {${mjmlAttributeToCssProperty(
             c.attributeName
-          )}: `;
+          )}:`;
         return CSS_STYLE_RULE + "{";
     }
   }
@@ -192,7 +192,10 @@ function getEmbeddedDocument(
   ignoreAttributeValues: boolean
 ): TextDocument {
   let currentPos = 0;
-  const oldContent = document.getText();
+  const oldContent = document
+    .getText()
+    .replace(/<mj-style/gi, "<style   ")
+    .replace(/<\/mj-style/gi, "</style   ");
   let result = "";
   let lastSuffix = "";
   for (const c of contents) {
