@@ -315,9 +315,9 @@ export default class HtmlTemplateLanguageService
     // The best fix would be to add `style` to `contentUnformatted` but
     // https://github.com/Microsoft/vscode-html-languageservice/issues/29 is causing problems and I'm not sure how
     // to work around it well
-    if (/<(mj-)?style/.test(context.text)) {
-      return [];
-    }
+    // if (/<(mj-)?style/.test(context.text)) {
+    //   return [];
+    // }
 
     const document = this.virtualDocumentProvider.createVirtualDocument(
       context
@@ -344,7 +344,7 @@ export default class HtmlTemplateLanguageService
       insertSpaces: !!settings.convertTabsToSpaces,
       wrapLineLength: 120,
       unformatted: "",
-      contentUnformatted: "pre,code,textarea,mjml-raw",
+      contentUnformatted: "pre,code,textarea,style,mj-raw,mj-style",
       indentInnerHtml: true,
       preserveNewLines: true,
       maxPreserveNewLines: 2,

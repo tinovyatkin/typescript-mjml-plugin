@@ -219,7 +219,12 @@ export function getDocumentRegions(
   document: TextDocument
 ): HTMLDocumentRegions {
   const regions: EmbeddedRegion[] = [];
-  const scanner = languageService.createScanner(document.getText());
+  // replacing mj-style with equal length style
+  const text = document
+    .getText()
+    .replace(/<mj-style/gi, "<style   ")
+    .replace(/mj-style>/gi, "   style>");
+  const scanner = languageService.createScanner(text);
   let lastTagName = "";
   let lastAttributeName: string | null = null;
   let languageIdFromType: string | undefined;
@@ -232,7 +237,6 @@ export function getDocumentRegions(
         lastTagName = scanner.getTokenText();
         lastAttributeName = null;
         languageIdFromType = "javascript";
-        if (lastTagName.toLowerCase() !== "mj-style") break;
       case TokenType.Styles:
         regions.push({
           languageId: "css",
