@@ -238,7 +238,7 @@ export default class HtmlTemplateLanguageService
   ): ts.CompletionEntryDetails {
     const entry = this.getCompletionItems(context, position);
     if (entry.type === "styled") {
-      return this.styledLanguageService.getCompletionEntryDetails(
+      return this.styledLanguageService.getCompletionEntryDetails!(
         context,
         position,
         name
