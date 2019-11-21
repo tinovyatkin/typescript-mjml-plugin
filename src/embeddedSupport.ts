@@ -129,7 +129,9 @@ function getPrefix(c: EmbeddedRegion) {
           c.attributeName &&
           MJML_CSS_ATTRIBUTES.has(c.attributeName.toLowerCase())
         )
-          return `${CSS_STYLE_RULE} { ${mjmlAttributeToCssProperty}: `;
+          return `${CSS_STYLE_RULE} { ${mjmlAttributeToCssProperty(
+            c.attributeName
+          )}: `;
         return CSS_STYLE_RULE + "{";
     }
   }
