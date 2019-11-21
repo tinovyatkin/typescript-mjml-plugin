@@ -63,10 +63,13 @@ export const MJML_CSS_ATTRIBUTES = new Set([
   "vertical-align",
   "width"
 ]);
-const mjmlAttributeToCssProperty(attr: string): string {
-  const attribute = attr.trim().toLowerCase().replace(/^tb-/, '');
-  for(const shorthand of ['color', 'padding', 'width', 'height', 'position']) {
-    if(attribute.includes(shorthand)) return shorthand;
+function mjmlAttributeToCssProperty(attr: string): string {
+  const attribute = attr
+    .trim()
+    .toLowerCase()
+    .replace(/^tb-/, "");
+  for (const shorthand of ["color", "padding", "width", "height", "position"]) {
+    if (attribute.includes(shorthand)) return shorthand;
   }
   return attribute;
 }
