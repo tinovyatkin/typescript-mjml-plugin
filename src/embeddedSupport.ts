@@ -85,7 +85,7 @@ const onlyPlaceholdersRegex = /^ *x{3,}( *x{3,})* *$/;
 function getAttributeLanguage(attributeName?: string | null): string | null {
   if (!attributeName) return null;
 
-  if (MJML_CSS_ATTRIBUTES.has(attributeName.toLowerCase())) return "css";
+  // if (MJML_CSS_ATTRIBUTES.has(attributeName.toLowerCase())) return "css";
   const match = /^(style)$|^(on\w+)$/i.exec(attributeName);
   if (!match) {
     return null;
@@ -232,15 +232,9 @@ export function getDocumentRegions(
         lastTagName = scanner.getTokenText();
         lastAttributeName = null;
         languageIdFromType = "javascript";
-        if (scanner.getTokenText() === "mjml-style") {
-          regions.push({
-            languageId: "css",
-            start: scanner.getTokenOffset(),
-            end: scanner.getTokenEnd(),
-            onlyPlaceholders: onlyPlaceholdersRegex.test(scanner.getTokenText())
-          });
-        }
         break;
+      case TokenType.Content:
+        if (lastTagName.toLowerCase() !== "mj-style") break;
       case TokenType.Styles:
         regions.push({
           languageId: "css",

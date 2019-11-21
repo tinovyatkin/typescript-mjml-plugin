@@ -315,7 +315,7 @@ export default class HtmlTemplateLanguageService
     // The best fix would be to add `style` to `contentUnformatted` but
     // https://github.com/Microsoft/vscode-html-languageservice/issues/29 is causing problems and I'm not sure how
     // to work around it well
-    if (context.text.match(/<(mjml-)?style/g)) {
+    if (/<(mj-)?style/.test(context.text)) {
       return [];
     }
 

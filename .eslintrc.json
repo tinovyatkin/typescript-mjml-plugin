@@ -22,7 +22,8 @@
   },
   "rules": {
     "@typescript-eslint/require-await": "off",
-    "@typescript-eslint/explicit-function-return-type": "warn"
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "no-fallthrough": "off"
   },
   "overrides": [
     {
