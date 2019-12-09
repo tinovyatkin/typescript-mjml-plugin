@@ -124,7 +124,7 @@ function getLanguageAtPosition(
   return "html";
 }
 
-function getPrefix(c: EmbeddedRegion) {
+function getPrefix(c: EmbeddedRegion): string {
   if (c.attributeValue && !c.onlyPlaceholders) {
     switch (c.languageId) {
       case "css":
@@ -132,10 +132,10 @@ function getPrefix(c: EmbeddedRegion) {
           c.attributeName &&
           MJML_CSS_ATTRIBUTES.has(c.attributeName.toLowerCase())
         )
-          return `${CSS_STYLE_RULE} {${mjmlAttributeToCssProperty(
+          return `${CSS_STYLE_RULE}{${mjmlAttributeToCssProperty(
             c.attributeName
           )}:`;
-        return CSS_STYLE_RULE + "{";
+        return `${CSS_STYLE_RULE}{`;
     }
   }
   return "";
@@ -342,8 +342,8 @@ export function getDocumentRegions(
           lastTagName.toLowerCase() === "mj-include"
         ) {
           let value = scanner.getTokenText();
-          if (value.startsWith("'") || value.startsWith('"')) {
-            value = value.substr(1, value.length - 1);
+          if (/^['"].+["']$/.test(value)) {
+            value = value.slice(1, -1);
           }
           importedScripts.push(value);
         } else if (

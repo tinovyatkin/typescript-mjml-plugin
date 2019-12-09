@@ -11,7 +11,7 @@ interface TsHtmlPluginConfiguration {
 }
 
 const defaultConfiguration: TsHtmlPluginConfiguration = {
-  tags: ["mjml"],
+  tags: ["mjml", "mjml-fragment"],
   format: {
     enabled: true
   }
